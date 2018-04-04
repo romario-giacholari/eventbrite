@@ -14,7 +14,9 @@ class EventController extends Controller
      */
     public function index()
     {
-        //
+        $events = Event::with('photos')->get();
+
+        return view('events.index', compact('events'));
     }
 
     /**
