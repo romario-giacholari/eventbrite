@@ -3,20 +3,32 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
+        <div class="col-md-12">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                <th scope="col">Event_Name</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($events as $event)
+                <tr>
+                <td>{{ $event->name}} </td>
+                <td><a href="{{ route('events.edit', ['event' => $event] ) }}" class="text-dark">edit</a></td>
+                <td>
+                    <form action="{{ route('events.destroy', ['event' => $event] ) }}" method="POST">
+                        {{method_field('DELETE')}}
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
-                </div>
-            </div>
+                        {{csrf_field()}}
+                        <a href="#" onclick="$(this).closest('form').submit()" class="text-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                    </form>
+                </td>
+                </tr>
+                @endforeach
+            </tbody>
+            </table>
         </div>
     </div>
 </div>

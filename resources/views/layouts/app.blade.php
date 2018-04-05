@@ -18,6 +18,7 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -34,7 +35,11 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        @auth
+                            <li><a class="nav-link bg-primary text-white" href="{{ route('events.create') }}">CREATE EVENT</a></li>
+                            <li><a class="nav-link" href="{{ route('home') }}">home</a></li>
+                        @endauth
+                            <li><a class="nav-link" href="{{ route('events.index') }}">events</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

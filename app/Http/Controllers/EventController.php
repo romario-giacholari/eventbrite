@@ -14,7 +14,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = Event::with('photos')->get();
+        $events = Event::with('photos')->paginate(24);
 
         return view('events.index', compact('events'));
     }
@@ -26,7 +26,7 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        return view('events.create');
     }
 
     /**
@@ -48,7 +48,7 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        //
+        return $event->load('photos');
     }
 
     /**
@@ -59,7 +59,7 @@ class EventController extends Controller
      */
     public function edit(Event $event)
     {
-        //
+        
     }
 
     /**
@@ -82,6 +82,8 @@ class EventController extends Controller
      */
     public function destroy(Event $event)
     {
-        //
+        $event->delete();
+
+        return back();
     }
 }
