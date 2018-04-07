@@ -9,11 +9,12 @@
 @import '~bootstrap/scss/bootstrap';
 
 .navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
-textarea:focus,
+body {
+  background-color:white;
+}
+
 input[type="option"]:focus,
 input[type="text"]:focus,
 input[type="password"]:focus,
@@ -42,4 +43,16 @@ input[type="color"]:focus,
 
 .event-thumbnail:hover {
   opacity:0.5;
+}
+
+.mr-1 {
+  margin-right:1em
+}
+
+.level {
+  display:flex; align-items:center;
+}
+
+.flex { 
+  flex:1;
 }

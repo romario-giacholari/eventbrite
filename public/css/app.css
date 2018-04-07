@@ -9994,13 +9994,10 @@ a.text-dark:focus {
   }
 }
 
-.navbar-laravel {
-  background-color: #fff;
-  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+body {
+  background-color: white;
 }
 
-textarea:focus,
 input[type="option"]:focus,
 input[type="text"]:focus,
 input[type="password"]:focus,
@@ -10030,5 +10027,24 @@ input[type="color"]:focus,
 
 .event-thumbnail:hover {
   opacity: 0.5;
+}
+
+.mr-1 {
+  margin-right: 1em;
+}
+
+.level {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.flex {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
 }
 

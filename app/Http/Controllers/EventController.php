@@ -2,19 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use Image;
 use App\Event;
 use Illuminate\Http\Request;
+use App\Filters\EventFilters;
 
 class EventController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth')->only(['create','store','edit','update','destroy']);
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(EventFilters $filters)
     {
-        $events = Event::with('photos')->paginate(24);
+        $events = Event::with('creator')->filter($filters)->latest()->paginate(24);
 
         return view('events.index', compact('events'));
     }
@@ -37,7 +45,34 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'description' => 'required',
+            'due_date' => 'required',
+            'contact' => 'required',
+            'venue' => 'required',
+            'type' => 'required',
+            'thumbnail_path' => 'required|image|mimes:jpeg,png,jpg,gif,svg'
+        ]);
+
+        $image = $request->thumbnail_path;
+        $filename = time() . '.' . $image->getClientOriginalExtension();
+        $location = public_path('photos/' . $filename);
+        // width - height
+        Image::make($image)->resize(640, 480)->save($location);
+        
+        $event = auth()->user()->events()->create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'due_date' => $request->due_date,
+            'contact' => $request->contact,
+            'venue' => $request->venue ,
+            'type' => $request->type,
+            'thumbnail_path' => $filename
+
+        ]);
+
+        return redirect(route('events.show', $event));
     }
 
     /**
@@ -48,7 +83,9 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        return $event->load('photos');
+        $event = $event->load(['photos', 'favorites']);
+        
+        return view('events.show', compact('event'));
     }
 
     /**
@@ -59,7 +96,9 @@ class EventController extends Controller
      */
     public function edit(Event $event)
     {
+        $this->authorize('update',$event);
         
+        return view('events.edit', compact('event'));
     }
 
     /**
@@ -71,7 +110,40 @@ class EventController extends Controller
      */
     public function update(Request $request, Event $event)
     {
-        //
+        $this->authorize('update',$event);
+
+        $this->validate($request, [
+            'name' => 'required',
+            'description' => 'required',
+            'due_date' => 'required',
+            'contact' => 'required',
+            'venue' => 'required',
+            'type' => 'required',
+            'thumbnail_path' => 'image|mimes:jpeg,png,jpg,gif,svg'
+        ]);
+
+        if($request->thumbnail_path != null ) {
+
+            $image = $request->thumbnail_path;
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('photos/' . $filename);
+            // width - height
+            Image::make($image)->resize(640, 480)->save($location);
+        }
+
+        
+        $event->update([
+            'name' => $request->name,
+            'description' => $request->description,
+            'due_date' => $request->due_date,
+            'contact' => $request->contact,
+            'venue' => $request->venue ,
+            'type' => $request->type,
+            'thumbnail_path' => $request->thumbnail_path? $filename: $event->thumbnail_path
+
+        ]);
+
+        return redirect(route('events.show', $event));
     }
 
     /**
@@ -82,6 +154,8 @@ class EventController extends Controller
      */
     public function destroy(Event $event)
     {
+        $this->authorize('update',$event);
+        
         $event->delete();
 
         return back();

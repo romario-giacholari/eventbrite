@@ -20,10 +20,19 @@
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+     <script>
+        window.App = {!! json_encode([
+            'csrfToken' => csrf_token(),
+            'signedIn' => Auth::check(),
+            'user' => Auth::user()
+        ]) !!};
+    </script>
+    
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+        <nav class="navbar navbar-expand-md navbar navbar-dark bg-dark">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -36,10 +45,23 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         @auth
-                            <li><a class="nav-link bg-primary text-white" href="{{ route('events.create') }}">CREATE EVENT</a></li>
                             <li><a class="nav-link" href="{{ route('home') }}">home</a></li>
                         @endauth
                             <li><a class="nav-link" href="{{ route('events.index') }}">events</a></li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                filter
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="/events?popular=1">popular</a>
+                                @auth
+                                <a  class="dropdown-item" href="/events?by={{auth()->user()->name}}" title="see your events">my events</a>
+                                @endauth
+                            </li>
+                        @auth
+                            <li><a class="nav-link" href="{{ route('events.create') }}"><i class="fa fa-plus-circle fa-lg" aria-hidden="true" title="add new event"></i></a></li>
+                        @endauth
+                
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -74,6 +96,10 @@
 
         <main class="py-4">
             @yield('content')
+
+             <!-- Vue flash component -->
+            <flash message="{{ session('flash') }}"></flash>
+            
         </main>
     </div>
 </body>

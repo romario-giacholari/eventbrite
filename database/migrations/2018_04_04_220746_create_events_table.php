@@ -19,8 +19,10 @@ class CreateEventsTable extends Migration
             $table->enum('type', ['sport', 'culture', 'other']);
             $table->string('name');
             $table->string('description');
+            $table->dateTime('due_date');
             $table->string('contact');
             $table->string('venue');
+            $table->string('thumbnail_path');
             $table->timestamps();
         });
     }

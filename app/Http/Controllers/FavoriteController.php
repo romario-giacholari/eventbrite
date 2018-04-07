@@ -2,29 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Favorite;
+use App\Event;
 use Illuminate\Http\Request;
 
 class FavoriteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function __construct()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $this->middleware('auth');
     }
 
     /**
@@ -33,43 +18,9 @@ class FavoriteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Event $event)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Favorite  $favorite
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Favorite $favorite)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Favorite  $favorite
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Favorite $favorite)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Favorite  $favorite
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Favorite $favorite)
-    {
-        //
+        $event->favorite();
     }
 
     /**
@@ -78,8 +29,8 @@ class FavoriteController extends Controller
      * @param  \App\Favorite  $favorite
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Favorite $favorite)
+    public function destroy(Event $event)
     {
-        //
+        $event->unfavorite();
     }
 }

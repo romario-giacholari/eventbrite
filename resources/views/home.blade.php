@@ -15,8 +15,8 @@
             <tbody>
                 @foreach($events as $event)
                 <tr>
-                <td>{{ $event->name}} </td>
-                <td><a href="{{ route('events.edit', ['event' => $event] ) }}" class="text-dark">edit</a></td>
+                <td><a href="{{ route('events.show', $event) }}"> {{ $event->name}} </a> </td>
+                <td><a href="{{ route('events.edit', ['event' => $event] ) }}" class="text-dark" style="text-decoration:none">edit</a></td>
                 <td>
                     <form action="{{ route('events.destroy', ['event' => $event] ) }}" method="POST">
                         {{method_field('DELETE')}}

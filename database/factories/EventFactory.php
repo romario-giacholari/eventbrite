@@ -10,7 +10,9 @@ $factory->define(App\Event::class, function (Faker $faker) {
         'type' => $faker->randomElement(['sport' ,'culture', 'other']),
         'name' => $faker->word ,
         'description' =>  $faker->text,
+        'due_date' => $faker->dateTimeBetween('+0 days', '+2 years'),
         'contact' => $faker->phoneNumber,
         'venue' => $faker->city,
+        'thumbnail_path' => $faker->imageUrl,
     ];
 });

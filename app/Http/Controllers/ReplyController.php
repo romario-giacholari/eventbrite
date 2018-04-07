@@ -2,19 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Image;
 use App\Event;
-use App\Photo;
+use App\Reply;
 use Illuminate\Http\Request;
 
-class PhotoController extends Controller
+class ReplyController extends Controller
 {
-
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -43,36 +36,29 @@ class PhotoController extends Controller
      */
     public function store(Request $request, Event $event)
     {
-        // |image|mimes:jpeg,png,jpg,gif,svg
-        $this->validate($request, [
-
-            'photos' => 'required' 
-        ]);
-       
-        foreach($request->photos as $image) {
-
-            $filename = time() . '.' . $image->getClientOriginalExtension();
-            $location = public_path('photos/' . $filename);
-            // width - height
-            Image::make($image)->resize(640, 480)->save($location);
-            
-            $event->photos()->create([
-                'path' => $filename,
+        $this->validate(request(), [
+            'body' => 'required|max:255',
             ]);
-
-        }
-
-        return back();
         
+        $reply = $event->addReply([
+            'body' => request('body'),
+            'user_id' => auth()->id()
+            ]);
+     
+        if (request()->expectsJson()) {
+
+             return $reply->load('owner');
+        }
+        return back()->with('flash','Your reply has been submitted');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Photo  $photo
+     * @param  \App\Reply  $reply
      * @return \Illuminate\Http\Response
      */
-    public function show(Photo $photo)
+    public function show(Reply $reply)
     {
         //
     }
@@ -80,10 +66,10 @@ class PhotoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Photo  $photo
+     * @param  \App\Reply  $reply
      * @return \Illuminate\Http\Response
      */
-    public function edit(Photo $photo)
+    public function edit(Reply $reply)
     {
         //
     }
@@ -92,24 +78,26 @@ class PhotoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Photo  $photo
+     * @param  \App\Reply  $reply
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Photo $photo)
+    public function update(Request $request, Reply $reply)
     {
-        //
+        $this->validate($request, [
+            'body' => 'required|max:255',
+        ]);
+
+        $reply->update($request->all());
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Photo  $photo
+     * @param  \App\Reply  $reply
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Photo $photo)
+    public function destroy(Reply $reply)
     {
-        $photo->delete();
-
-        return back();
+        $reply->delete();
     }
 }
