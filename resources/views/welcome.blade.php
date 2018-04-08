@@ -13,6 +13,17 @@
                 events listed in the web page and show interest to an event. A student could register in the website and
                 become an event organiser who will be able to publish events.
                 </p>
+                <ul>
+                    <li>You can create an event once you are signed up</li>
+                    <li>You can update an event</li>
+                    <li>You can upload multiple photos associated with an event</li>
+                    <li>You can list events</li>
+                    <li>You can view a specific event</li>
+                    <li>You can show interest to an event by liking it</li>
+                    <li>You can leave comments to a particular event</li>
+                    <li>You can like comments</li>
+                    <li>You can filter events</li>
+                </ul>
             </div>
         </div>
     </div>

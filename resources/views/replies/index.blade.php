@@ -4,7 +4,7 @@
     <div class="d-flex justify-content-space-around">
         <span class="mr-auto"> {{ $reply->owner->name }} said ... </span>
         @auth
-          <favorite class="mr-right" :data="data"></favorite>
+          <favorite-reply class="mr-right" :reply="{{ $reply }}"></favorite-reply>
          @endauth
     </div>
   </div>
@@ -13,8 +13,12 @@
   </div>
   @can('update', $reply)
   <div class="card-footer text-muted">
-    <button class="btn btn-xs mr-1">Edit</button>
-    <button class="btn btn-xs btn-danger">Delete</button>
+    <a href="{{route('reply.edit',['reply' => $reply, 'event' => $event])}}">edit</a>
+    <form action="{{route('reply.destroy',$reply)}}" method="POST">
+        {{method_field('DELETE')}}
+        {{csrf_field()}}
+      <a href="#" onclick="$(this).closest('form').submit()" style="color:red">delete</a>
+    </form>
   </div>
   @endcan
 </div>

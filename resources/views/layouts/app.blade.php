@@ -57,6 +57,11 @@
                                 @auth
                                 <a  class="dropdown-item" href="/events?by={{auth()->user()->name}}" title="see your events">my events</a>
                                 @endauth
+                                <a class="dropdown-item" href="/events?past_events=1">past events</a>
+                                <a class="dropdown-item" href="/events?upcoming_events=1">upcoming events</a>
+                                <a class="dropdown-item" href="/events/type/sport">sport</a>
+                                <a class="dropdown-item" href="/events/type/culture">culture</a>
+                                <a class="dropdown-item" href="/events/type/other">other</a>
                             </li>
                         @auth
                             <li><a class="nav-link" href="{{ route('events.create') }}"><i class="fa fa-plus-circle fa-lg" aria-hidden="true" title="add new event"></i></a></li>

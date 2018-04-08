@@ -7,12 +7,12 @@
 <script>
     export default {
     
-      props:['event'],
+      props:['reply'],
 
        data() {
            return {
-               favoritesCount : this.event.favoritesCount,
-               isFavorited : this.event.isFavorited
+               favoritesCount : this.reply.favoritesCount,
+               isFavorited : this.reply.isFavorited
            }
        },
        computed: {
@@ -20,7 +20,7 @@
             return ['btn', this.isFavorited ? 'btn-primary' : 'btn-default'];
            },
            endpoint(){
-              return '/events/' + this.event.id + '/favorites';
+              return '/replies/' + this.reply.id + '/favorites';
            }
        },
        methods: {

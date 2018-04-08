@@ -14,9 +14,9 @@
     </div>
 </form>
 @else
-<p>
+<p class="mt-2 text-center">
     <a href="/login">
-        Please sign in to participate in this discussion
+        <u>Please sign in to participate in this discussion</u>
     </a>
 </p>
 @endauth

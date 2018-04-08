@@ -21,7 +21,7 @@ class Event extends Model
     
     public function path()
     {
-        return "events/{$this->id}";
+        return "/events/{$this->id}";
     }
 
     public function creator()

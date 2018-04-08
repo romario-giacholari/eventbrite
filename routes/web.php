@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,18 +18,33 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+#Filter by type
+Route::get('/events/type/{type}', function($type) {
+
+    $events = App\Event::where('type', $type)->paginate(24);
+
+    return view('events.index', compact('events'));
+});
+
+
+#Events
+Route::resource('events', 'EventController');
+
 #Toggle favorite event
-Route::post('model/{event}/favorites', 'FavoriteController@store');
-Route::delete('model/{event}/favorites', 'FavoriteController@destroy');
+Route::post('events/{event}/favorites', 'FavoriteController@store');
+Route::delete('events/{event}/favorites', 'FavoriteController@destroy');
+
+#Toggle favorite reply
+Route::post('replies/{reply}/favorites', 'FavoriteReplyController@store');
+Route::delete('replies/{reply}/favorites', 'FavoriteReplyController@destroy');
 
 #Photo
 Route::post('events/{event}/photos', 'PhotoController@store')->name('photos.store');
 Route::delete('photos/{photo}', 'PhotoController@destroy');
 
-#Events
-Route::resource('events', 'EventController');
 
 #Replies
 Route::post('/events/{event}/replies','ReplyController@store')->name('reply.store');
-Route::delete('/replies/{reply}','ReplyController@destroy')->name('delete_reply');
-Route::patch('/replies/{reply}','ReplyController@update')->name('update_reply');
+Route::delete('/replies/{reply}','ReplyController@destroy')->name('reply.destroy');
+Route::patch('/replies/{reply}','ReplyController@update')->name('reply.update');
+Route::get('/replies/{reply}/{event}','ReplyController@edit')->name('reply.edit');

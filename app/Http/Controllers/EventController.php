@@ -51,7 +51,7 @@ class EventController extends Controller
             'due_date' => 'required',
             'contact' => 'required',
             'venue' => 'required',
-            'type' => 'required',
+            'type' => 'required|in:sport,culture,other',
             'thumbnail_path' => 'required|image|mimes:jpeg,png,jpg,gif,svg'
         ]);
 
@@ -118,7 +118,7 @@ class EventController extends Controller
             'due_date' => 'required',
             'contact' => 'required',
             'venue' => 'required',
-            'type' => 'required',
+            'type' => 'required|in:sport,culture,other',
             'thumbnail_path' => 'image|mimes:jpeg,png,jpg,gif,svg'
         ]);
 

@@ -2,12 +2,14 @@
 
 namespace App;
 
+use App\Reply;
 use Illuminate\Database\Eloquent\Model;
 
 class Reply extends Model
 {
    protected $guarded = [];
-
+   
+   protected $appends = ['favoritesCount','isFavorited'];
    protected $with = ['owner'];
 
    protected static function boot()

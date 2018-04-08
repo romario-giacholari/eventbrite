@@ -71,7 +71,7 @@ class ReplyController extends Controller
      */
     public function edit(Reply $reply)
     {
-        //
+        return view('replies.edit', compact('reply'));
     }
 
     /**
@@ -88,6 +88,8 @@ class ReplyController extends Controller
         ]);
 
         $reply->update($request->all());
+        
+        return redirect(route('events.show', $reply->event))->with('flash', 'Updated!');
     }
 
     /**
@@ -99,5 +101,7 @@ class ReplyController extends Controller
     public function destroy(Reply $reply)
     {
         $reply->delete();
+
+        return back()->with('flash', 'deleted!');
     }
 }

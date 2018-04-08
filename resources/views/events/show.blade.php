@@ -33,7 +33,9 @@
                         <span class="carousel-control-next-icon"></span>
                     </a>
                 </div>
-
+                
+                <h3 class="mt-3" style="font-family:Comic Sans MS, cursive, sans-serif">comments</h3> 
+                <hr />
                 @include('replies.index', ['replies' => $event->replies])
 
             </div>
@@ -47,7 +49,7 @@
                         <h5 class="card-title">{{ $event->name }}</h5>
                         <p class="card-text">{{ $event->contact }}</p>
                         <p class="card-text">{{ $event->description }}</p>
-                        @auth <favorite :data ="{{ $event }}"></favorite> @endauth
+                        @auth <favorite :event ="{{ $event }}"></favorite> @endauth
                     </div>
                 </div>
                 
