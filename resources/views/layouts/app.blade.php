@@ -48,6 +48,9 @@
                             <li><a class="nav-link" href="{{ route('home') }}">home</a></li>
                         @endauth
                             <li><a class="nav-link" href="{{ route('events.index') }}">events</a></li>
+                            @auth
+                            <li><a class="nav-link" href="{{ route('events.create') }}">new event</a></li>
+                           @endauth
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 filter
@@ -63,9 +66,6 @@
                                 <a class="dropdown-item" href="/events/type/culture">culture</a>
                                 <a class="dropdown-item" href="/events/type/other">other</a>
                             </li>
-                        @auth
-                            <li><a class="nav-link" href="{{ route('events.create') }}"><i class="fa fa-plus-circle fa-lg" aria-hidden="true" title="add new event"></i></a></li>
-                        @endauth
                 
                     </ul>
 

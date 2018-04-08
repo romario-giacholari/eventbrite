@@ -4,6 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
+        @if(count($events))
         <table class="table">
             <thead class="thead-dark">
                 <tr>
@@ -29,6 +30,9 @@
                 @endforeach
             </tbody>
             </table>
+            @else
+            <h1 style="font-family:Comic Sans MS, cursive, sans-serif">No events, go ahead and <a href="{{ route('events.create')}} "><u>create</u></a> one!</h1>
+            @endunless
         </div>
     </div>
 </div>

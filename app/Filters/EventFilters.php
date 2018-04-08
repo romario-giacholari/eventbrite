@@ -27,7 +27,7 @@ class EventFilters extends Filters
 	{
 		$this->builder->getQuery()->orders = [];
 
-		return $this->builder->orderBy('due_date', '<', Carbon::now());
+		return $this->builder->where('due_date', '<', Carbon::now());
 	}
 
 	protected function upcoming_events()
