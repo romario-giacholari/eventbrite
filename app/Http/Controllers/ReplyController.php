@@ -49,6 +49,7 @@ class ReplyController extends Controller
 
              return $reply->load('owner');
         }
+
         return back()->with('flash','Your reply has been submitted');
     }
 
@@ -89,7 +90,6 @@ class ReplyController extends Controller
 
         $reply->update($request->all());
         
-        return redirect(route('events.show', $reply->event))->with('flash', 'Updated!');
     }
 
     /**
@@ -102,6 +102,5 @@ class ReplyController extends Controller
     {
         $reply->delete();
 
-        return back()->with('flash', 'deleted!');
     }
 }

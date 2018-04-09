@@ -40,11 +40,10 @@ Route::delete('replies/{reply}/favorites', 'FavoriteReplyController@destroy');
 
 #Photo
 Route::post('events/{event}/photos', 'PhotoController@store')->name('photos.store');
-Route::delete('photos/{photo}', 'PhotoController@destroy');
+Route::delete('photos/{photo}', 'PhotoController@destroy')->name('photos.destroy');
 
 
 #Replies
 Route::post('/events/{event}/replies','ReplyController@store')->name('reply.store');
 Route::delete('/replies/{reply}','ReplyController@destroy')->name('reply.destroy');
 Route::patch('/replies/{reply}','ReplyController@update')->name('reply.update');
-Route::get('/replies/{reply}/{event}','ReplyController@edit')->name('reply.edit');

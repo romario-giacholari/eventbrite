@@ -21,6 +21,15 @@
                         <div class="carousel-item">
                             <!-- <img src="{{ url('/photos/' .$photo->path) }}" width="100%"> -->
                             <img src="{{ $photo->path }}" width="100%">
+                            @can('update', $event)
+                            <div class="carousel-caption">
+                                <form action="{{ route('photos.destroy', $photo) }}" method="POST">
+                                    {{ csrf_field() }}
+                                    {{ method_field('DELETE') }}
+                                    <button type="submit" class="btn btn-danger">remove</button>
+                                </form>
+                            </div>
+                            @endcan
                         </div>
                         @endforeach
                     </div>
@@ -34,9 +43,11 @@
                     </a>
                 </div>
                 
-                <h3 class="mt-3" style="font-family:Comic Sans MS, cursive, sans-serif">comments</h3> 
+                <h3 class="mt-3" style="font-family:Comic Sans MS, cursive, sans-serif"><u>comments</u></h3> 
                 <hr />
-                @include('replies.index', ['replies' => $event->replies])
+                
+                <!-- Replies -->
+                <replies :data=" {{ $event->replies }}"></replies>
 
             </div>
         
