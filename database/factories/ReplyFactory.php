@@ -7,6 +7,9 @@ $factory->define(App\Reply::class, function (Faker $faker) {
         'user_id' => function() {
             return factory('App\User')->create()->id;
         },
+        'event_id' => function() {
+            return factory('App\Event')->create()->id;
+        },
         'body' => $faker->paragraph,
     ];
 });

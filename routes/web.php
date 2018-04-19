@@ -31,12 +31,12 @@ Route::get('/events/type/{type}', function($type) {
 Route::resource('events', 'EventController');
 
 #Toggle favorite event
-Route::post('events/{event}/favorites', 'FavoriteController@store');
-Route::delete('events/{event}/favorites', 'FavoriteController@destroy');
+Route::post('events/{event}/favorites', 'FavoriteController@store')->name('events.favorite');
+Route::delete('events/{event}/favorites', 'FavoriteController@destroy')->name('events.unfavorite');
 
 #Toggle favorite reply
-Route::post('replies/{reply}/favorites', 'FavoriteReplyController@store');
-Route::delete('replies/{reply}/favorites', 'FavoriteReplyController@destroy');
+Route::post('replies/{reply}/favorites', 'FavoriteReplyController@store')->name('replies.favorite');
+Route::delete('replies/{reply}/favorites', 'FavoriteReplyController@destroy')->name('replies.unfavorite');
 
 #Photo
 Route::post('events/{event}/photos', 'PhotoController@store')->name('photos.store');

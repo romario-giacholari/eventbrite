@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
 {
+    use Favoritable;
+
     protected $guarded = [];
 
     protected $appends = ['favoritesCount','isFavorited'];
@@ -14,6 +16,7 @@ class Event extends Model
     protected static function boot()
     {
         parent::boot();
+
         static::addGlobalScope('favoritesCount', function($builder){
             $builder->withCount('favorites');
         });
@@ -49,40 +52,4 @@ class Event extends Model
         return $filters->apply($query);
     }
 
-    public function favorites()
-    {
-   		return $this->morphMany(Favorite::class,'favorited');
-    }
-
-    public function favorite()
-    {
-       $attributes = ['user_id' => auth()->id()]; 
-
-       if(! $this->favorites()->where($attributes)->exists())
-       {
-    	   return $this->favorites()->create($attributes);
-   		 }
-    }
-
-    public function unfavorite()
-    {
-        $attributes = ['user_id' => auth()->id()]; 
-        
-        $this->favorites()->where($attributes)->delete();
-    }
-
-    public function getIsFavoritedAttribute()
-    {
-        return $this->isFavorited();
-    }
-
-    public function isFavorited()
-    {
-      return $this->favorites()->where('user_id', auth()->id())->exists();
-    }
-
-    public function getFavoritesCountAttribute()
-    {
-        return $this->favorites->count();
-    }
 }
