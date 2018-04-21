@@ -45,15 +45,15 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        // $this->validate($request, [
-        //     'name' => 'required',
-        //     'description' => 'required',
-        //     'due_date' => 'required',
-        //     'contact' => 'required',
-        //     'venue' => 'required',
-        //     'type' => 'required|in:sport,culture,other',
-        //     'thumbnail_path' => 'required|image|mimes:jpeg,png,jpg,gif,svg'
-        // ]);
+        $this->validate($request, [
+            'name' => 'required',
+            'description' => 'required',
+            'due_date' => 'required',
+            'contact' => 'required',
+            'venue' => 'required',
+            'type' => 'required|in:sport,culture,other',
+            'thumbnail_path' => 'required|image|mimes:jpeg,png,jpg,gif,svg'
+        ]);
 
         $image = $request->thumbnail_path;
         $filename = time() . '.' . $image->getClientOriginalExtension();

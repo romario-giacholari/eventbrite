@@ -12,15 +12,15 @@
 
                         <!-- Thumbnail -->
                         <div class="carousel-item active">
-                            <!-- <img src="{{ url('/photos/' .$event->thumbnail_path) }}" width="100%"> -->
-                            <img src="{{ $event->thumbnail_path }}" width="100%">
+                            <img src="{{ url('/photos/' .$event->thumbnail_path) }}" width="100%">
+                            <!-- <img src="{{ $event->thumbnail_path }}" width="100%"> -->
                         </div>
                         
                         <!-- Photos associated with the event -->
                         @foreach($event->photos as $photo)
                         <div class="carousel-item">
-                            <!-- <img src="{{ url('/photos/' .$photo->path) }}" width="100%"> -->
-                            <img src="{{ $photo->path }}" width="100%">
+                            <img src="{{ url('/photos/' .$photo->path) }}" width="100%">
+                            <!-- <img src="{{ $photo->path }}" width="100%"> -->
                             @can('update', $event)
                             <div class="carousel-caption">
                                 <form action="{{ route('photos.destroy', $photo) }}" method="POST">
