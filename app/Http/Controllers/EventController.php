@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Event;
 use App\Filters\EventFilters;
 use App\Http\Requests\PublishEventRequest;
+use Intervention\Image\Facades\Image;
 
 class EventController extends Controller
 {
