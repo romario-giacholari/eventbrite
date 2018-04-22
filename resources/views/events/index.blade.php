@@ -2,7 +2,9 @@
 @section('content')
     <div class="container">
          <div class="d-flex justify-content-between align-items-center">
-             <a href="/events/create" class="btn btn-lg btn-success add-button mr-auto" title="add event"><i class="fa fa-plus" aria-hidden="true"></i></a>
+             @auth
+                 <a href="/events/create" class="btn btn-lg btn-success add-button mr-auto" title="add event"><i class="fa fa-plus" aria-hidden="true"></i></a>
+             @endauth
              <h1 class="mr-auto heading">Events</h1> 
         </div>
         <hr />
