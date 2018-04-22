@@ -45,7 +45,6 @@ class PhotoController extends Controller
     {
         // |image|mimes:jpeg,png,jpg,gif,svg
         $this->validate($request, [
-
             'photos' => 'required' 
         ]);
        
@@ -59,7 +58,6 @@ class PhotoController extends Controller
             $event->photos()->create([
                 'path' => $filename,
             ]);
-
         }
 
         return back();

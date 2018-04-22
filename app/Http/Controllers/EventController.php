@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Event;
 use Illuminate\Http\Request;
 use App\Filters\EventFilters;
+use App\Http\Requests\PublishEventRequest;
 
 class EventController extends Controller
 {
@@ -39,22 +40,12 @@ class EventController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\PublishEventRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PublishEventRequest $request)
     {
-        $attributes = $this->validate($request, [
-            'name' => 'required',
-            'description' => 'required',
-            'due_date' => 'required',
-            'contact' => 'required',
-            'venue' => 'required',
-            'type' => 'required|in:sport,culture,other',
-            'thumbnail_path' => 'required|image|mimes:jpeg,png,jpg,gif,svg'
-        ]);
-        
-        $event = auth()->user()->addEvent($attributes);
+        $event = auth()->user()->addEvent($request->all());
 
         return redirect(route('events.show', $event));
     }
@@ -88,26 +79,15 @@ class EventController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\PublishEventRequestt  $request
      * @param  \App\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Event $event)
+    public function update(PublishEventRequest $request, Event $event)
     {
         $this->authorize('update',$event);
 
-        $this->validate($request, [
-            'name' => 'required',
-            'description' => 'required',
-            'due_date' => 'required',
-            'contact' => 'required',
-            'venue' => 'required',
-            'type' => 'required|in:sport,culture,other',
-            'thumbnail_path' => 'image|mimes:jpeg,png,jpg,gif,svg'
-        ]);
-
         if($request->thumbnail_path != null ) {
-
             $image = $request->thumbnail_path;
             $filename = time() . '.' . $image->getClientOriginalExtension();
             $location = public_path('photos/' . $filename);
@@ -115,7 +95,6 @@ class EventController extends Controller
             Image::make($image)->resize(640, 480)->save($location);
         }
 
-        
         $event->update([
             'name' => $request->name,
             'description' => $request->description,
