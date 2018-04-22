@@ -2,7 +2,7 @@
 
 namespace App;
 
-use Image;
+use Intervention\Image\Facades\Image;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -28,16 +28,26 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function events()
     {
         return $this->hasMany(Event::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function favorites()
     {
         return $this->hasMany(Favorite::class);
     }
 
+    /**
+     * @param $attributes
+     * @return \Illuminate\Database\Eloquent\Model
+     */
     public function addEvent($attributes)
     {
         $attributes['thumbnail_path'] = $this->addThumbnail($attributes['thumbnail_path']);
@@ -45,6 +55,10 @@ class User extends Authenticatable
         return $this->events()->create($attributes);
     }
 
+    /**
+     * @param $image
+     * @return string
+     */
     private function addThumbnail($image)
     {
         $filename = time() . '.' . $image->getClientOriginalExtension();

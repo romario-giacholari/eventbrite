@@ -47930,7 +47930,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             axios.post(this.endpoint, { body: this.body }).catch(function (error) {
-                flash(error.response.data.body[0], 'danger');
+                flash(error.response.data.errors.body[0], 'danger');
             }).then(function (_ref) {
                 var data = _ref.data;
 
@@ -48004,7 +48004,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("a", { attrs: { href: "/login" } }, [
-      _c("u", [_vm._v("Please sign in to participate in this discussion")])
+      _c("u", [_vm._v("Please sign in to post comments.")])
     ])
   }
 ]

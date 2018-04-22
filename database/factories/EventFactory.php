@@ -11,6 +11,7 @@ $factory->define(App\Event::class, function (Faker $faker) {
         'name' => $faker->word ,
         'description' =>  $faker->text,
         'due_date' => $faker->dateTimeBetween('+0 days', '+2 years'),
+        'time' => '13:00',
         'contact' => $faker->phoneNumber,
         'venue' => $faker->city,
         'thumbnail_path' => $faker->imageUrl,

@@ -3,9 +3,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10">
-
-            <h1><b>Edit event</b></h1>
-
+            <h1 class="text-center heading">Edit event</h1>
             <hr />
 
             <form action="{{ route('events.update', $event) }}" method="POST" enctype="multipart/form-data">
@@ -22,7 +20,12 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="email">Due date</label>
                     <input type="date" value="{{ $event->due_date }}" class="form-control"  name= "due_date" required>
+                </div>
+
+                  <div class="form-group">
+                    <input type="text" value="{{ $event->time }}" class="form-control"  name= "time" required>
                 </div>
 
                 <div class="form-group">
@@ -45,7 +48,7 @@
 
                 <div class="form-group">
                     <input type="file" class="form-control" name="thumbnail_path">
-                    <small class="form-text text-muted">Optional</small>
+                    <small class="form-text text-muted">optional</small>
                 </div>
                             
                 <button type="submit" class="btn btn-primary btn-block">Update</button>

@@ -43,7 +43,7 @@
                     </a>
                 </div>
                 
-                <h3 class="mt-3" style="font-family:Comic Sans MS, cursive, sans-serif"><u>comments</u></h3> 
+                <h3 class="text-center mt-5 heading"><u>comments</u></h3> 
                 <hr />
                 
                 <!-- Replies -->
@@ -54,13 +54,23 @@
             <!-- Event Information -->
             <div class="col-md-4 p-3">
 
-                <div class="card bg-light mb-3" >
-                    <div class="card-header">{{ $event->type }}</div>
+                <div class="card  mb-3" >
                     <div class="card-body">
                         <h5 class="card-title">{{ $event->name }}</h5>
-                        <p class="card-text">{{ $event->contact }}</p>
+                        <hr />
+                        <p class="card-text">
+                            <i class="fa fa-mobile"></i>
+                            <a href="tel:{{ $event->contact }}">{{ $event->contact }}</a>
+                        </p>
+                        <p class="card-text">
+                            <i class="fa fa-envelope-o"></i>
+                            <a href="mailto:{{ $event->creator->email }}">{{ $event->creator->email }}</a>
+                        </p>
                         <p class="card-text">{{ $event->description }}</p>
-                        @auth <favorite :event ="{{ $event }}"></favorite> @endauth
+                        <p class="card-text">{{ $event->due_date }}</p>
+                        <p class="card-text">{{ $event->time }}</p>
+                        <p class="card-text">{{ $event->type }}</p>
+                    @auth <favorite :event ="{{ $event }}"></favorite> @endauth
                     </div>
                 </div>
                 

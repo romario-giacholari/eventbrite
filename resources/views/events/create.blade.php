@@ -4,8 +4,7 @@
     <div class="row">
         <div class="col-md-10">
 
-            <h1><b>Post event</b></h1>
-
+            <h1 class=" text-center heading">Post event</h1>
             <hr />
 
             <form action="{{ route('events.store') }}" method="POST" enctype="multipart/form-data">
@@ -21,7 +20,12 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="email">Due date</label>
                     <input type="date" class="form-control"  name= "due_date" required>
+                </div>
+
+                 <div class="form-group">
+                    <input type="text" class="form-control"  name= "time" placeholder="time of the event" required >
                 </div>
 
                 <div class="form-group">
@@ -35,10 +39,10 @@
                 <div class="form-group">
                     <label for="exampleSelect2">Event type</label>
                     <select class="form-control" name="type" required>
-                    <option value="">pick event type</option>
-                    <option>sport</option>
-                    <option>culture</option>
-                    <option>other</option>
+                        <option value="">pick event type</option>
+                        <option>sport</option>
+                        <option>culture</option>
+                        <option>other</option>
                     </select>
                 </div>
 

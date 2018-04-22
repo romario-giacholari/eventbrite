@@ -14,11 +14,17 @@ trait Favoritable
         });
     }
 
+    /**
+     * @return mixed
+     */
     public function favorites()
     {
    		return $this->morphMany(Favorite::class,'favorited');
     }
-    
+
+    /**
+     * @return mixed
+     */
     public function favorite()
     {
         $attributes = ['user_id' => auth()->id()]; 
@@ -27,26 +33,38 @@ trait Favoritable
             return $this->favorites()->create($attributes);
         }
      }
- 
-     public function unfavorite()
+
+    /**
+     *return void
+     */
+    public function unfavorite()
      {
          $attributes = ['user_id' => auth()->id()]; 
          
          $this->favorites()->where($attributes)->delete();
  
      }
- 
-     public function getIsFavoritedAttribute()
+
+    /**
+     * @return mixed
+     */
+    public function getIsFavoritedAttribute()
      {
          return $this->isFavorited();
      }
- 
-     public function isFavorited()
+
+    /**
+     * @return mixed
+     */
+    public function isFavorited()
      {
          return $this->favorites()->where('user_id', auth()->id())->exists();
      }
- 
-     public function getFavoritesCountAttribute()
+
+    /**
+     * @return mixed
+     */
+    public function getFavoritesCountAttribute()
      {
          return $this->favorites->count();
      }

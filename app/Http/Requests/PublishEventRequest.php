@@ -27,6 +27,7 @@ class PublishEventRequest extends FormRequest
             'name' => 'required',
             'description' => 'required',
             'due_date' => 'required',
+            'time' => 'required',
             'contact' => 'required',
             'venue' => 'required',
             'type' => 'required|in:sport,culture,other',

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Event;
-use Illuminate\Http\Request;
 use App\Filters\EventFilters;
 use App\Http\Requests\PublishEventRequest;
 
@@ -79,7 +78,7 @@ class EventController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\PublishEventRequestt  $request
+     * @param  \App\Http\Requests\PublishEventRequest  $request
      * @param  \App\Event  $event
      * @return \Illuminate\Http\Response
      */
@@ -99,6 +98,7 @@ class EventController extends Controller
             'name' => $request->name,
             'description' => $request->description,
             'due_date' => $request->due_date,
+            'time' => $request->time,
             'contact' => $request->contact,
             'venue' => $request->venue ,
             'type' => $request->type,

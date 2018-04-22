@@ -15,7 +15,7 @@
 
         <p class='text-center' v-else>
             <a href="/login">
-                <u>Please sign in to participate in this discussion</u>
+                <u>Please sign in to post comments.</u>
             </a>
         </p>
        
@@ -47,7 +47,7 @@
         addReply() {
             axios.post(this.endpoint, { body: this.body })
                 .catch(error => {
-                       flash(error.response.data.body[0],'danger');
+                       flash(error.response.data.errors.body[0],'danger');
                     })
                     .then(({data}) => {
                          this.body = '';

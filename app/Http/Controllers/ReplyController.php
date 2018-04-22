@@ -36,9 +36,7 @@ class ReplyController extends Controller
      */
     public function store(Request $request, Event $event)
     {
-        $this->validate(request(), [
-            'body' => 'required|max:255',
-            ]);
+        $this->validate(request(), ['body' => 'required|max:255']);
         
         $reply = $event->addReply([
             'body' => request('body'),
@@ -46,7 +44,6 @@ class ReplyController extends Controller
             ]);
      
         if (request()->expectsJson()) {
-
              return $reply->load('owner');
         }
 
@@ -84,9 +81,7 @@ class ReplyController extends Controller
      */
     public function update(Request $request, Reply $reply)
     {
-        $this->validate($request, [
-            'body' => 'required|max:255',
-        ]);
+        $this->validate($request, ['body' => 'required|max:255']);
 
         $reply->update($request->all());
         

@@ -20,6 +20,7 @@ class CreateEventsTable extends Migration
             $table->string('name');
             $table->string('description');
             $table->dateTime('due_date');
+            $table->string('time');
             $table->string('contact');
             $table->string('venue');
             $table->string('thumbnail_path');

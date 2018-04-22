@@ -16,14 +16,14 @@
             <tbody>
                 @foreach($events as $event)
                 <tr>
-                <td><a href="{{ route('events.show', $event) }}"> {{ $event->name}} </a> </td>
-                <td><a href="{{ route('events.edit', ['event' => $event] ) }}" class="text-dark" style="text-decoration:none">edit</a></td>
+                <td><a href="{{ route('events.show', $event) }}"> <u>{{ $event->name}} </u> </a> </td>
+                <td><a href="{{ route('events.edit', ['event' => $event] ) }}" class="text-dark" style="text-decoration:none"><i class="fa fa-edit fa-lg" aria-hidden="true"></i></a></td>
                 <td>
                     <form action="{{ route('events.destroy', ['event' => $event] ) }}" method="POST">
                         {{method_field('DELETE')}}
 
                         {{csrf_field()}}
-                        <a href="#" onclick="$(this).closest('form').submit()" class="text-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                        <a href="#" onclick="$(this).closest('form').submit()" class="text-danger"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
                     </form>
                 </td>
                 </tr>

@@ -14,13 +14,21 @@ abstract class Filters
 
 	protected $filters = [];
 
-	public function __construct(Request $request)
+    /**
+     * Filters constructor.
+     * @param Request $request
+     */
+    public function __construct(Request $request)
 	{
 
 		$this->request = $request;
 	}
 
-	public function apply($builder)
+    /**
+     * @param $builder
+     * @return mixed
+     */
+    public function apply($builder)
 	{
 		$this->builder = $builder;
 
@@ -28,13 +36,12 @@ abstract class Filters
 
 			if(method_exists($this, $filter) && $this->request->has($filter)){
 
-			$this->$filter($this->request->$filter);
+			    $this->$filter($this->request->$filter);
 			}
 		}
 
 		return $this->builder;
 	}
-
 
 
 }

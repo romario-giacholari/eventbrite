@@ -2,7 +2,6 @@
 
 namespace App;
 
-use App\Reply;
 use Illuminate\Database\Eloquent\Model;
 
 class Reply extends Model
@@ -15,12 +14,18 @@ class Reply extends Model
 
    protected $with = ['owner'];
 
-   public function owner()
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function owner()
    {
    	    return $this->belongsTo(User::class, 'user_id');
    }
 
-   public function event()
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function event()
    {
         return $this->belongsTo(Event::class);
    }

@@ -8,9 +8,6 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-.navbar-laravel {
-}
-
 body {
   background-color:white;
 }
@@ -55,4 +52,13 @@ input[type="color"]:focus,
 
 .flex { 
   flex:1;
+}
+
+.add-button {
+  border-radius:50%;
+  box-shadow: 2px 2px 0 2px rgba(0, 0, 0, 0.2);
+}
+
+.heading {
+  font-family:Comic Sans MS, cursive, sans-serif;
 }

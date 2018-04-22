@@ -45,26 +45,26 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         @auth
-                            <li><a class="nav-link" href="{{ route('home') }}">home</a></li>
+                            <li><a class="nav-link" href="{{ route('home') }}" title="home">home</a></li>
                         @endauth
-                            <li><a class="nav-link" href="{{ route('events.index') }}">events</a></li>
+                            <li><a class="nav-link" href="{{ route('events.index') }}" title="events">events</a></li>
                             @auth
-                            <li><a class="nav-link" href="{{ route('events.create') }}">new event</a></li>
+                            <li><a class="nav-link" href="{{ route('events.create') }}" title="publish an event">new event</a></li>
                            @endauth
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                filter
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="filters">
+                                    filter
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="/events?popular=1">popular</a>
+                                <a class="dropdown-item" href="/events?popular=1" title="popular">popular</a>
                                 @auth
                                 <a  class="dropdown-item" href="/events?by={{auth()->user()->name}}" title="see your events">my events</a>
                                 @endauth
-                                <a class="dropdown-item" href="/events?past_events=1">past events</a>
-                                <a class="dropdown-item" href="/events?upcoming_events=1">upcoming events</a>
-                                <a class="dropdown-item" href="/events/type/sport">sport</a>
-                                <a class="dropdown-item" href="/events/type/culture">culture</a>
-                                <a class="dropdown-item" href="/events/type/other">other</a>
+                                <a class="dropdown-item" href="/events?past_events=1" title="events that took place in the past">past events</a>
+                                <a class="dropdown-item" href="/events?upcoming_events=1" title="upcoming events">upcoming events</a>
+                                <a class="dropdown-item" href="/events/type/sport" title="browse events with type sport">sport</a>
+                                <a class="dropdown-item" href="/events/type/culture" title="browse events with type culture">culture</a>
+                                <a class="dropdown-item" href="/events/type/other" title="browse events with type other">other</a>
                             </li>
                 
                     </ul>
