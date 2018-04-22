@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Image;
 use App\Event;
 use Illuminate\Http\Request;
 use App\Filters\EventFilters;
@@ -45,7 +44,7 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $attributes = $this->validate($request, [
             'name' => 'required',
             'description' => 'required',
             'due_date' => 'required',
@@ -54,23 +53,8 @@ class EventController extends Controller
             'type' => 'required|in:sport,culture,other',
             'thumbnail_path' => 'required|image|mimes:jpeg,png,jpg,gif,svg'
         ]);
-
-        $image = $request->thumbnail_path;
-        $filename = time() . '.' . $image->getClientOriginalExtension();
-        $location = public_path('photos/' . $filename);
-        // width - height
-        Image::make($image)->resize(640, 480)->save($location);
         
-        $event = auth()->user()->events()->create([
-            'name' => $request->name,
-            'description' => $request->description,
-            'due_date' => $request->due_date,
-            'contact' => $request->contact,
-            'venue' => $request->venue ,
-            'type' => $request->type,
-            'thumbnail_path' => $filename
-
-        ]);
+        $event = auth()->user()->addEvent($attributes);
 
         return redirect(route('events.show', $event));
     }

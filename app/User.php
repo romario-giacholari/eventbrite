@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Image;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -35,5 +36,23 @@ class User extends Authenticatable
     public function favorites()
     {
         return $this->hasMany(Favorite::class);
+    }
+
+    public function addEvent($attributes)
+    {
+        $attributes['thumbnail_path'] = $this->addThumbnail($attributes['thumbnail_path']);
+        
+        return $this->events()->create($attributes);
+    }
+
+    private function addThumbnail($image)
+    {
+        $filename = time() . '.' . $image->getClientOriginalExtension();
+        $location = public_path('photos/' . $filename);
+
+        // width - height
+        Image::make($image)->resize(640, 480)->save($location);
+
+        return $filename;
     }
 }
