@@ -75,21 +75,36 @@
                 </div>
                 
                 @can('update', $event)
-                <div class="card bg-light mb-3">
-                    <div class="card-header">Upload photos</div>
-                    <div class="card-body">
-                        <form action="{{ route('photos.store', $event) }}" method="POST" class="form-group" enctype="multipart/form-data">
-                            {{csrf_field()}}
-                            <div class="form-control">
-                                <input name="photos[]"  type="file" multiple required/>
-                            </div>
-                            <input type="submit" class="btn btn-default mt-2" value="Upload" accept="image/*" />
-                        </form>
-                    </div>
-                </div>
+                    <form action="{{ route('photos.store', $event) }}" class="dropzone" enctype="multipart/form-data">
+                    
+                        {{csrf_field()}}
+
+                        <div class="fallback">
+                            <input name="file" type="file" accept="image/*" multiple />
+                        </div>
+                    </form>
+                    
+                    <a href="{{ $event->path() }}" class="btn btn-primary btn-block mt-2">save</a>
                 @endcan
             </div>
             
         </div>
     </div>
+
+  <script src = "https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/dropzone.js"></script>
+  <script>
+    Dropzone.options.addPhotosForm = {
+        maxFiles:1,
+            init: function() {
+                this.on("maxfilesexceeded", function(file) {
+                        this.removeAllFiles();
+                        this.addFile(file);
+                });
+            },
+            maxFiles: 5,
+            paramName: 'photos',
+            maxFilesize: '10',
+            acceptedFiles: '.jpg,.jpeg,.png,.bmp'
+    };
+  </script>
 @endsection
