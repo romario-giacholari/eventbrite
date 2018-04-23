@@ -53,7 +53,7 @@ class PhotoController extends Controller
             $event->photos()->create(['path' => $filename]);
         }
 
-//        return back();
+        return back();
         
     }
 
