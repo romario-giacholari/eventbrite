@@ -47,7 +47,7 @@
                 </div>
 
                 <div class="form-group">
-                    <input type="file" class="form-control" name="thumbnail_path" required>
+                    <input type="file" class="form-control" name="thumbnail_path" accept="image/*" required />
                 </div>
                             
                 <button type="submit" class="btn btn-primary btn-block">Post</button>

@@ -83,7 +83,7 @@
                             <div class="form-control">
                                 <input name="photos[]"  type="file" multiple required/>
                             </div>
-                            <input type="submit" class="btn btn-default mt-2" value="Upload" />
+                            <input type="submit" class="btn btn-default mt-2" value="Upload" accept="image/*" />
                         </form>
                     </div>
                 </div>

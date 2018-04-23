@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Event;
 use App\Filters\EventFilters;
-use App\Http\Requests\PublishEventRequest;
 use Intervention\Image\Facades\Image;
+use App\Http\Requests\UpdateEventRequest;
+use App\Http\Requests\PublishEventRequest;
 
 class EventController extends Controller
 {
@@ -83,7 +84,7 @@ class EventController extends Controller
      * @param  \App\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function update(PublishEventRequest $request, Event $event)
+    public function update(UpdateEventRequest $request, Event $event)
     {
         $this->authorize('update',$event);
 

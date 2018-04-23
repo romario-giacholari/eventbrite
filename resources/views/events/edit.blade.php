@@ -47,7 +47,7 @@
                 </div>
 
                 <div class="form-group">
-                    <input type="file" class="form-control" name="thumbnail_path">
+                    <input type="file" class="form-control" name="thumbnail_path" accept="image/*">
                     <small class="form-text text-muted">optional</small>
                 </div>
                             

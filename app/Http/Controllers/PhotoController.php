@@ -6,6 +6,7 @@ use App\Event;
 use App\Photo;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
+use App\Http\Requests\UploadImagesRequest;
 
 class PhotoController extends Controller
 {
@@ -41,26 +42,18 @@ class PhotoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Event $event)
+    public function store(UploadImagesRequest $request, Event $event)
     {
-        // |image|mimes:jpeg,png,jpg,gif,svg
-        $this->validate($request, [
-            'photos' => 'required' 
-        ]);
-       
         foreach($request->photos as $image) {
-
             $filename = time() . '.' . $image->getClientOriginalExtension();
             $location = public_path('photos/' . $filename);
             // width - height
             Image::make($image)->resize(640, 480)->save($location);
             
-            $event->photos()->create([
-                'path' => $filename,
-            ]);
+            $event->photos()->create(['path' => $filename]);
         }
 
-        return back();
+//        return back();
         
     }
 
