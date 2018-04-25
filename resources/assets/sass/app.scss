@@ -62,3 +62,12 @@ input[type="color"]:focus,
 .heading {
   font-family:Comic Sans MS, cursive, sans-serif;
 }
+
+input[type="date"] {
+	min-height: 2.5rem;
+}
+
+.form-control:focus{
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
