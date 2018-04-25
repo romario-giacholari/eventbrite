@@ -31,7 +31,7 @@ class UpdateEventRequest extends FormRequest
             'contact' => 'required|max:25',
             'venue' => 'required|max:50',
             'type' => 'required|in:sport,culture,other',
-            'thumbnail_path' => 'required|image|mimes:jpeg,png,jpg,gif,svg'
+            'thumbnail_path' => 'image|mimes:jpeg,png,jpg,gif,svg'
         ];
     }
 }
