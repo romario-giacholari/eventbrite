@@ -26,7 +26,7 @@
                                 <form action="{{ route('photos.destroy', $photo) }}" method="POST">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
-                                    <button type="submit" class="btn btn-danger">remove</button>
+                                    <button type="submit" class="btn btn-danger"><li class="fa fa-trash"></li></button>
                                 </form>
                             </div>
                             @endcan
