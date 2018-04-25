@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Event;
 use App\Photo;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Input;
-use Intervention\Image\Facades\Image;
 use App\Http\Requests\UploadImageRequest;
 
 class PhotoController extends Controller
@@ -45,12 +43,9 @@ class PhotoController extends Controller
      */
     public function store(UploadImageRequest $request, Event $event)
     {   
-            $file = Input::file('file');
+            $file = $request->file('photo');
+
             $fileName = time() . '-' . $file->getClientOriginalName();
-            
-            Image::make($request->file('file')->getRealPath())
-                ->resize(640,480)
-                ->save(public_path('photos/'). $file->getClientOriginalName());
 
             $file->move('photos', $fileName);
             

@@ -56,8 +56,9 @@
 
                 <div class="card  mb-3" >
                     <div class="card-body">
-                        <h5 class="card-title">{{ $event->name }}</h5>
+                        <h5 class="card-title"><b>{{ $event->name }}</b></h5>
                         <hr />
+                        <p class="card-text">published by {{ $event->creator->name }}</p>
                         <p class="card-text">
                             <i class="fa fa-mobile"></i>
                             <a href="tel:{{ $event->contact }}">{{ $event->contact }}</a>
@@ -67,7 +68,7 @@
                             <a href="mailto:{{ $event->creator->email }}">{{ $event->creator->email }}</a>
                         </p>
                         <p class="card-text">{{ $event->description }}</p>
-                        <p class="card-text">{{ $event->due_date }}</p>
+                        <p class="card-text">{{ \Carbon\Carbon::parse($event->due_date)->diffForHumans() }}</p>
                         <p class="card-text">{{ $event->time }}</p>
                         <p class="card-text">{{ $event->type }}</p>
                     @auth <favorite :event ="{{ $event }}"></favorite> @endauth
@@ -75,16 +76,9 @@
                 </div>
                 
                 @can('update', $event)
-                    <form action="{{ route('photos.store', $event) }}" class="dropzone" enctype="multipart/form-data">
-                    
+                    <form  id="addPhotosForm" action="{{ route('photos.store', $event) }}" class="dropzone" enctype="multipart/form-data">
                         {{csrf_field()}}
-
-                        <div class="fallback">
-                            <input name="file" type="file" accept="image/*" multiple />
-                        </div>
                     </form>
-                    
-                    <a href="{{ $event->path() }}" class="btn btn-primary btn-block mt-2">save</a>
                 @endcan
             </div>
             
@@ -94,17 +88,22 @@
   <script src = "https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/dropzone.js"></script>
   <script>
     Dropzone.options.addPhotosForm = {
-        maxFiles:1,
             init: function() {
                 this.on("maxfilesexceeded", function(file) {
                         this.removeAllFiles();
                         this.addFile(file);
                 });
+
+                this.on("success", function(file) {
+                   flash('Uploaded!');
+                   location.reload();
+                  
+               });
             },
             maxFiles: 5,
-            paramName: 'photos',
+            paramName: 'photo',
             maxFilesize: '10',
-            acceptedFiles: '.jpg,.jpeg,.png,.bmp'
+            acceptedFiles: '.jpg, .jpeg, .png, .bmp'
     };
   </script>
 @endsection

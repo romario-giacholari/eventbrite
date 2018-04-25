@@ -20,7 +20,7 @@
                             <p class="card-text"> venue: {{ $event->venue }}</p>
                             <p class="card-text">type: {{ $event->type }}</p>
                             <p class="card-text">likes: {{ $event->favorites_count }}</p>
-                            <p class="card-text">due date: {{ $event->due_date }}</p>
+                            <p class="card-text">due date: {{ \Carbon\Carbon::parse($event->due_date)->diffForHumans() }}</p>
                         </div>
                     </div>
                 </a>
