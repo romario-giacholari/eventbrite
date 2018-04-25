@@ -18,7 +18,7 @@ class CreateEventsTable extends Migration
             $table->unsignedInteger('user_id');
             $table->enum('type', ['sport', 'culture', 'other']);
             $table->string('name');
-            $table->string('description');
+            $table->text('description');
             $table->dateTime('due_date');
             $table->string('time');
             $table->string('contact');

@@ -24,12 +24,12 @@ class PublishEventRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'description' => 'required',
-            'due_date' => 'required',
-            'time' => 'required',
-            'contact' => 'required',
-            'venue' => 'required',
+            'name' => 'required|max:50',
+            'description' => 'required|max:400',
+            'due_date' => 'required|date',
+            'time' => 'required|max:15',
+            'contact' => 'required|max:25',
+            'venue' => 'required|max:50',
             'type' => 'required|in:sport,culture,other',
             'thumbnail_path' => 'required|image|mimes:jpeg,png,jpg,gif,svg'
         ];
