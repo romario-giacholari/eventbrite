@@ -21,7 +21,7 @@
 
                 <div class="form-group">
                     <label for="email">Due date</label>
-                    <input type="date" value="{{ $event->due_date }}" class="form-control"  name= "due_date" required>
+                    <input type="date" value="{{ \Carbon\Carbon::parse($event->due_date)->format('Y-m-d') }}" class="form-control"  name= "due_date" required>
                 </div>
 
                   <div class="form-group">
