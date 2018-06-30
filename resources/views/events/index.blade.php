@@ -15,9 +15,8 @@
                 @foreach($events as $event)
                 <div class="col-md-4 p-3">
                         <div class="card" style="font-family:Comic Sans MS, cursive, sans-serif">
-                            <!-- <img class="card-img" src="{{ url('/photos/' .$event->thumbnail_path) }}" style="opacity:0.2;"> -->
                             <a href="{{ $event->path() }}">
-                                <img class="card-img event-thumbnail" src="{{ $event->thumbnail_path }}">
+                                 <img class="card-img event-thumbnail" src="{{ url('/photos/' .$event->thumbnail_path) }}">
                             </a>
                             <div class="card-body ">
                                 <h5 class="card-title">title: {{ $event->name }}</h5>
