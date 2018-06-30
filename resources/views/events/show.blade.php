@@ -76,7 +76,10 @@
                 </div>
                 
                 @can('update', $event)
-                    <form  id="addPhotosForm" action="{{ route('photos.store', $event) }}" class="dropzone" enctype="multipart/form-data">
+                    <form  id="addPhotosForm" 
+                           action="{{ route('photos.store', $event) }}" 
+                           class="dropzone" 
+                           enctype="multipart/form-data">
                         {{csrf_field()}}
                     </form>
                 @endcan

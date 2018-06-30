@@ -14,8 +14,9 @@ class FavoriteController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Event $event
      * @return \Illuminate\Http\Response
+     * @internal param \Illuminate\Http\Request $request
      */
     public function store(Event $event)
     {
@@ -25,8 +26,9 @@ class FavoriteController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Favorite  $favorite
+     * @param Event $event
      * @return \Illuminate\Http\Response
+     * @internal param \App\Favorite $favorite
      */
     public function destroy(Event $event)
     {

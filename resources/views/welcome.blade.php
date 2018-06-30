@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1 style="font-family:Comic Sans MS, cursive, sans-serif">Features</h1>
+                <h1 style="font-family:Comic Sans MS, cursive, sans-serif">Welcome to Aston Events!</h1>
                 <hr />
                 <p style="font-family:Comic Sans MS, cursive, sans-serif">
                 Aston_Events is a platform that lets users promote the events that are organised

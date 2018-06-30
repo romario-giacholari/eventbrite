@@ -38,7 +38,8 @@ class PhotoController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param UploadImageRequest|Request $request
+     * @param Event $event
      * @return \Illuminate\Http\Response
      */
     public function store(UploadImageRequest $request, Event $event)

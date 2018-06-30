@@ -14,8 +14,9 @@ class FavoriteReplyController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Reply $reply
      * @return \Illuminate\Http\Response
+     * @internal param \Illuminate\Http\Request $request
      */
     public function store(Reply $reply)
     {
@@ -25,8 +26,9 @@ class FavoriteReplyController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Favorite  $favorite
+     * @param Reply $reply
      * @return \Illuminate\Http\Response
+     * @internal param \App\Favorite $favorite
      */
     public function destroy(Reply $reply)
     {

@@ -19,6 +19,7 @@ class EventController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param EventFilters $filters
      * @return \Illuminate\Http\Response
      */
     public function index(EventFilters $filters)
@@ -80,8 +81,8 @@ class EventController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\PublishEventRequest  $request
-     * @param  \App\Event  $event
+     * @param UpdateEventRequest $request
+     * @param  \App\Event $event
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateEventRequest $request, Event $event)
